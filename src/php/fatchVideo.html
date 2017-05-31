@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>video</title>
+</head>
+<body>
+<div id="box">
+    <button id="btn">shipin</button>
+</div>
+</body>
+<script type="text/javascript" src="Ajax.js"></script>
+<script type="text/javascript">
+    document.getElementById("btn").onclick=function (){
+        ajaxRequest("post","fatchVideo.php",true,{
+            "id":"1"
+        },function (data) {
+            console.log(JSON.parse(data))
+        })
+    }
+
+</script>
+</html>

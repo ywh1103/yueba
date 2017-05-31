@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="box">
+    <button id="btn">登录</button>
+</div>
+</body>
+<script type="text/javascript" src="Ajax.js"></script>
+<script type="text/javascript">
+    document.getElementById("btn").onclick=function (){
+        ajaxRequest("post","user.php",true,{
+            "id":"1"
+        },function (data) {
+            console.log(JSON.parse(data)[2].txt.split(","))
+        })
+    }
+
+</script>
+</html>

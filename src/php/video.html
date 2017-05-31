@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>video</title>
+    <script type="text/javascript" src="Ajax.js" ></script>
+</head>
+<body>
+
+</body>
+<script type="text/javascript">
+
+    ajaxRequest("post","video.json",true,null,function(data){
+//				console.log(JSON.parse(data));
+        ajaxRequest("post", "video.php", true, {
+            "shu":encodeURIComponent(data)
+        }, function (video) {
+            console.log(video);
+        });
+    })
+
+
+
+
+
+</script>
+</html>

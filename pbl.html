@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+
+	*{margin: 0;padding: 0;}
+	body,html{width:100%;}
+
+	.box{padding: 5px;float: left;margin:0;}
+	.item{padding: 5px;border:solid 1px #ccc;border-radius: 5px;}
+	.item img{width: 100px;height: auto;display:block;border-radius: 5px;}
+	#container{margin:auto;position:relative;width:100%;}
+	</style>
+</head>
+<body>
+	
+<!--容器-->
+<div id="container">
+
+
+</div>
+<script src="js/video.json" type="text/javascript"></script>
+<script>
+
+for(var num in _videoimg){
+	
+	
+	var _img = document.createElement("img");
+	_img["src"]=_videoimg[num].img;
+	_img.className = "itemimg";
+
+var _box =document.createElement("div");
+		_box.className = "box";
+
+
+	var _item = document.createElement("div");
+	_item.className = "item";
+
+	_item.appendChild(_img);
+	_box.appendChild(_item);
+
+	var conatiner = document.getElementById("container");
+	container.appendChild(_box);
+
+}
+	//自动加载项
+	window.onload = function(){
+		waterflow();
+	}
+	
+//瀑布流加载
+	function waterflow(){
+		console.log("222");
+		var _container = document.getElementById("container");
+		var _boxes = document.getElementsByClassName("box");
+		var _clientWidth = document.documentElement.clientWidth;
+		var _boxWidth = _boxes[0].offsetWidth;
+		var _col = Math.floor(_clientWidth/_boxWidth);
+		_container.style.width = _col * _boxWidth+"px";
+		_container.style.margin = "auto";
+	
+
+	var _arrayRow =[];
+	for(var i = 0;i<_boxes.length;i++){
+		if(i<_col){
+			_arrayRow[i] = _boxes[i].offsetHeight;
+			console.log(_arrayRow)
+		}else{
+			var _minHeight = Math.min.apply(null,_arrayRow);
+			var _minIndex = _arrayRow.indexOf(_minHeight);
+			console.log(_minHeight,_minIndex);
+
+			_boxes[i].style.left = _minIndex * _boxWidth +"px";
+			_boxes[i].style.top = _minHeight + "px";
+			_boxes[i].style.position = "absolute";
+
+			_arrayRow[_minIndex] += _boxes[i].offsetHeight;
+		}
+	}
+	}
+</script>
+</body>
+</html>
